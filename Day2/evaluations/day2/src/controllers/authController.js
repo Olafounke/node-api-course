@@ -1,8 +1,8 @@
 const authService = require('../services/authService');
 
-const handleRegister = async (req, res) => {
+const register = async (req, res) => {
   try {
-    const { user, token } = await authService.createNewUser(req.body);
+    const { user, token } = await authService.register(req.body);
     res.status(201).json({ user, token });
   } catch (error) {
     const status = error.status || 500;
@@ -10,9 +10,9 @@ const handleRegister = async (req, res) => {
   }
 };
 
-const handleLogin = async (req, res) => {
+const login = async (req, res) => {
   try {
-    const { user, token } = await authService.verifyUserCredentials(req.body);
+    const { user, token } = await authService.login(req.body);
     res.status(200).json({ user, token });
   } catch (error) {
     const status = error.status || 500;
@@ -20,9 +20,10 @@ const handleLogin = async (req, res) => {
   }
 };
 
-const handleGetMe = async (req, res) => {
+const getMe = async (req, res) => {
   try {
-    const user = await authService.getProfile(req.user.id);
+
+    const user = await authService.getMe(req.user.id);
     res.status(200).json(user);
   } catch (error) {
     const status = error.status || 500;
@@ -30,8 +31,4 @@ const handleGetMe = async (req, res) => {
   }
 };
 
-module.exports = { 
-  handleRegister, 
-  handleLogin, 
-  handleGetMe 
-};
+module.exports = { register, login, getMe };
