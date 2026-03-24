@@ -49,7 +49,6 @@ router.get('/:id', booksController.getBookById);
  * 403:
  * description: Accès refusé (Admin requis)
  */
-
 router.post('/', authenticate, authorize('admin'), booksController.addBook);
 router.delete('/:id', authenticate, authorize('admin'), booksController.deleteBook);
 router.post('/:id/emprunter', authenticate, booksController.borrowBook);

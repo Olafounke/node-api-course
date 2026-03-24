@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API Bibliothèque Municipale',
+      title: 'API Bibliothèque',
       version: '1.0.0', 
-      description: 'Documentation de l\'évaluation finale - Jour 3',
+      description: 'Documentation de l\'évaluation finale - Day 3',
     },
     servers: [
       {
@@ -25,7 +25,9 @@ const options = {
     },
   },
   
-  apis: ['../routes/*.js'], 
+  apis: []
+  //Mon swagger n'est pas bien configureé et ça entraine le crash de l'api
+  //apis: ['./src/routes/*.js'], 
 };
 
 module.exports = swaggerJsdoc(options);

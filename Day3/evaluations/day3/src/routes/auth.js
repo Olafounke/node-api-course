@@ -5,11 +5,8 @@ const validate = require('../middlewares/validate');
 const authenticate = require('../middlewares/authenticate');
 const { registerSchema, loginSchema } = require('../validators/authValidator');
 
-//route
 router.post('/register', validate(registerSchema), authController.handleRegister);
 router.post('/login', validate(loginSchema), authController.handleLogin);
-
-// tokens
 router.post('/refresh', authController.handleRefresh);
 router.post('/logout', authController.handleLogout);
 
@@ -23,6 +20,8 @@ router.post('/logout', authController.handleLogout);
  * responses:
  * 200:
  * description: Succès
+ * 401:
+ * description: Non authentifié
  */
 router.get('/me', authenticate, authController.handleGetMe);
 
